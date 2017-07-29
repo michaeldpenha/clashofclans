@@ -5,6 +5,8 @@ import { FormsModule }   from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BattlefieldComponent } from './battlefield/battlefield.component';
 
+import {BattleService} from './battlefield/battle.service';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,6 +16,9 @@ describe('AppComponent', () => {
       ],
       imports : [
         FormsModule
+      ],
+      providers : [
+        BattleService
       ]
     }).compileComponents();
   }));

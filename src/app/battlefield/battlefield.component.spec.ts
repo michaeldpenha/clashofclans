@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule }   from '@angular/forms';
 import { BattlefieldComponent } from './battlefield.component';
 
-import {Soldier} from './soldier'
+import {Soldier} from './soldier';
+import {BattleService} from './battle.service';
 
 describe('BattlefieldComponent', () => {
   let component: BattlefieldComponent;
@@ -11,7 +12,8 @@ describe('BattlefieldComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BattlefieldComponent ],
-      imports : [FormsModule]
+      imports : [FormsModule],
+      providers : [BattleService]
     })
     .compileComponents();
   }));
