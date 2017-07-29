@@ -3,6 +3,13 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+test:
+  pre:
+    - npm install -g karma
+    - nohup bash -c "karma start spec/javascripts/testacular.conf.js &"
+  override:
+    - bundle exec rspec spec
+    - karma run
 jobs:
   build:
     docker:
