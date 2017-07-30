@@ -14,7 +14,7 @@ export class Army {
            this.damagePerHit = this.damagePerHit + obj.damagePerHit;
         }
     }
-    public armyComposition(armyName){
+    private armyComposition(armyName){
         let teamAry = [];
         for(let obj of this.armyAvailbale[armyName]){
             teamAry.push(new Soldier(obj));

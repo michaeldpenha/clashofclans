@@ -1,5 +1,4 @@
-<div>
-Barbarian : <input [(ngModel)]="barbrianCountModel">
-Cannon : <input [(ngModel)]="cannonCountModel">
+<div *ngFor="let model of fieldModel">
+<span>{{model}} : <input [(ngModel)]="fieldModel[model]"></span>
 </div>
 <button (click)="battleBegin()">Battle</button>

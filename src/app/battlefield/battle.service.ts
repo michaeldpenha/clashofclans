@@ -7,4 +7,11 @@ export class BattleService {
   calculateNoHitsRequiredToKillEnemy(enemyObj : any , armyObj : any , enemyCount : number){
     return Math.ceil(enemyObj.health/ armyObj.damagePerHit) * enemyCount;
   }
+  calculateEnemyCount(battleObj: any, enemy){
+   let count= 0;
+   for(let enemyObj of  battleObj.armyComposition[enemy]){
+       count = count + battleObj.fieldModel[enemyObj.type];
+   }
+   return count;
+  }
 }

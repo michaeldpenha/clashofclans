@@ -30,16 +30,16 @@ describe('BattlefieldComponent', () => {
   it('Army Attacks the village with 1 Cannon and 1 Barbarian' , () => {
     fixture = TestBed.createComponent(BattlefieldComponent);
     component = fixture.componentInstance;
-    component.cannonCountModel = 1;
-    component.barbrianCountModel = 1;
+    component.fieldModel.Cannons = 1;
+    component.fieldModel.Barbarians = 1;
     component.battleBegin();
     expect(component.battleOutcome).toEqual('Defense wins.');
   });
   it('Army Attacks the village with 1 Cannon and 10 Barbarian' , () => {
     fixture = TestBed.createComponent(BattlefieldComponent);
     component = fixture.componentInstance;
-    component.cannonCountModel = 1;
-    component.barbrianCountModel = 10;
+    component.fieldModel.Cannons = 1;
+    component.fieldModel.Barbarians = 10;
     component.battleBegin();
     expect(component.battleOutcome).toEqual('Attack wins.');
   });

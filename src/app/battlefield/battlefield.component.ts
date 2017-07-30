@@ -13,16 +13,23 @@ import {BattleService} from './battle.service';
 export class BattlefieldComponent {
   defenseObj : any;
   attackObj : any;
+  fieldModel : any = [];
   battleOutcome : string;
-  barbrianCountModel : number = 0;
-  cannonCountModel : number = 0;
+  armyComposition  : any = {'Attack' : [{type : 'Barbarians',health : 45 , damagePerHit : 8}],'Defense':[{type : 'Cannons',health : 390 , damagePerHit : 10}]};
   constructor(private battleService : BattleService) { 
     this.soliderObjCreation();
+    this.createFieldModel();
   }
   soliderObjCreation (){
     this.attackObj = new Army('Attack');
     this.defenseObj = new Army('Defense');
-    
+  }
+  createFieldModel (){
+    for(let keys in this.armyComposition){
+        for(let obj of this.armyComposition[keys]){
+          this.fieldModel.push(obj['type']);
+        }
+    }
   }
   battleResult(hitsRequireToKillAttacker : number , hitsRequireToKillDestroyer : number){
    if(hitsRequireToKillAttacker > hitsRequireToKillDestroyer){
@@ -33,8 +40,8 @@ export class BattlefieldComponent {
     alert(this.battleOutcome);
   }
   battleBegin(){
-    let defenseArmyCount =this.cannonCountModel;
-    let attackArmyCount = this.barbrianCountModel;
+    let defenseArmyCount = this.battleService.calculateEnemyCount(this,'Defense');
+    let attackArmyCount = this.battleService.calculateEnemyCount(this,'Attack');
     let noOfHitsRequiredToKillAttacker = this.battleService.calculateNoHitsRequiredToKillEnemy(this.attackObj,this.defenseObj,attackArmyCount);
     let noOfHitsRequiredToDestroyDefense = this.battleService.calculateNoHitsRequiredToKillEnemy(this.defenseObj,this.attackObj,defenseArmyCount);
     this.battleResult(noOfHitsRequiredToKillAttacker,noOfHitsRequiredToDestroyDefense);
