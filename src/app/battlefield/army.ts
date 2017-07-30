@@ -4,8 +4,8 @@ export class Army {
     troops : any = [];
     health : number = 0;
     damagePerHit : number = 0;
-    constructor (armyName,armyComp){
-        this.calculateTotalArmyStrength(this.armyComposition(armyName,armyComp));
+    constructor (armyName,battleComp){
+        this.calculateTotalArmyStrength(this.armyComposition(armyName,battleComp));
     }
     private calculateTotalArmyStrength(troopsArray) {
         for(let obj of troopsArray){
@@ -13,9 +13,9 @@ export class Army {
            this.damagePerHit = this.damagePerHit + obj.damagePerHit;
         }
     }
-    private armyComposition(armyName,armyComp){
+    private armyComposition(armyName,battleComp){
         let teamAry = [];
-        for(let obj of armyComp[armyName]){
+        for(let obj of battleComp[armyName]){
             teamAry.push(new Soldier(obj));
         }
         return teamAry;

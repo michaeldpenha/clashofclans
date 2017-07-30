@@ -15,18 +15,18 @@ export class BattlefieldComponent {
   attackObj : any;
   fieldModel : any = [];
   battleOutcome : string;
-  armyComposition  : any = {'Attack' : [{type : 'Barbarians',health : 45 , damagePerHit : 8}],'Defense':[{type : 'Cannons',health : 390 , damagePerHit : 10}]};
+  battleComposition  : any = {'Attack' : [{type : 'Barbarians',health : 45 , damagePerHit : 8}],'Defense':[{type : 'Cannons',health : 390 , damagePerHit : 10}]};
   constructor(private battleService : BattleService) { 
     this.soliderObjCreation();
     this.createFieldModel();
   }
   soliderObjCreation (){
-    this.attackObj = new Army('Attack',this.armyComposition);
-    this.defenseObj = new Army('Defense',this.armyComposition);
+    this.attackObj = new Army('Attack',this.battleComposition);
+    this.defenseObj = new Army('Defense',this.battleComposition);
   }
   createFieldModel (){
-    for(let keys in this.armyComposition){
-        for(let obj of this.armyComposition[keys]){
+    for(let keys in this.battleComposition){
+        for(let obj of this.battleComposition[keys]){
           this.fieldModel.push(obj['type']);
         }
     }

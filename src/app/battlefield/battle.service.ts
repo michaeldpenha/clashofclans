@@ -9,7 +9,7 @@ export class BattleService {
   }
   calculateEnemyCount(battleObj: any, enemy){
    let count= 0;
-   for(let enemyObj of  battleObj.armyComposition[enemy]){
+   for(let enemyObj of  battleObj.battleComposition[enemy]){
        count = count + battleObj.fieldModel[enemyObj.type];
    }
    return count;
