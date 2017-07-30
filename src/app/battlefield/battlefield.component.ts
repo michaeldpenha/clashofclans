@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Soldier} from './soldier';
+import {Army} from './army';
 
 import {BattleService} from './battle.service';
 
@@ -10,8 +11,8 @@ import {BattleService} from './battle.service';
   styleUrls: ['./battlefield.component.css']
 })
 export class BattlefieldComponent {
-  cannonObj : any;
-  barbarianObj : any;
+  defenseObj : any;
+  attackObj : any;
   battleOutcome : string;
   barbrianCountModel : number = 0;
   cannonCountModel : number = 0;
@@ -19,8 +20,8 @@ export class BattlefieldComponent {
     this.soliderObjCreation();
   }
   soliderObjCreation (){
-    this.cannonObj = new Soldier('Defense',10,390);
-    this.barbarianObj = new Soldier('Attack',8,45);
+    this.defenseObj = new Army([new Soldier('Cannons',10,390)]);
+    this.attackObj = new Army([new Soldier('Barbarians',8,45)]);
   }
   battleResult(hitsRequireToKillAttacker : number , hitsRequireToKillDestroyer : number){
    if(hitsRequireToKillAttacker > hitsRequireToKillDestroyer){
@@ -31,8 +32,8 @@ export class BattlefieldComponent {
     alert(this.battleOutcome);
   }
   battleBegin(){
-    let noOfHitsRequiredToKillAttacker = this.battleService.calculateNoHitsRequiredToKillEnemy(this.barbarianObj,this.cannonObj,this.barbrianCountModel);
-    let noOfHitsRequiredToDestroyDefense = this.battleService.calculateNoHitsRequiredToKillEnemy(this.cannonObj,this.barbarianObj,this.cannonCountModel);
+    let noOfHitsRequiredToKillAttacker = this.battleService.calculateNoHitsRequiredToKillEnemy(this.attackObj,this.defenseObj,this.barbrianCountModel);
+    let noOfHitsRequiredToDestroyDefense = this.battleService.calculateNoHitsRequiredToKillEnemy(this.defenseObj,this.attackObj,this.cannonCountModel);
     this.battleResult(noOfHitsRequiredToKillAttacker,noOfHitsRequiredToDestroyDefense);
   }
 }
