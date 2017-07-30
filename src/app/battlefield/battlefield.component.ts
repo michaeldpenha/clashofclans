@@ -20,8 +20,9 @@ export class BattlefieldComponent {
     this.soliderObjCreation();
   }
   soliderObjCreation (){
-    this.defenseObj = new Army([new Soldier('Cannons',10,390)]);
-    this.attackObj = new Army([new Soldier('Barbarians',8,45)]);
+    this.attackObj = new Army('Attack');
+    this.defenseObj = new Army('Defense');
+    
   }
   battleResult(hitsRequireToKillAttacker : number , hitsRequireToKillDestroyer : number){
    if(hitsRequireToKillAttacker > hitsRequireToKillDestroyer){
@@ -32,8 +33,10 @@ export class BattlefieldComponent {
     alert(this.battleOutcome);
   }
   battleBegin(){
-    let noOfHitsRequiredToKillAttacker = this.battleService.calculateNoHitsRequiredToKillEnemy(this.attackObj,this.defenseObj,this.barbrianCountModel);
-    let noOfHitsRequiredToDestroyDefense = this.battleService.calculateNoHitsRequiredToKillEnemy(this.defenseObj,this.attackObj,this.cannonCountModel);
+    let defenseArmyCount =this.cannonCountModel;
+    let attackArmyCount = this.barbrianCountModel;
+    let noOfHitsRequiredToKillAttacker = this.battleService.calculateNoHitsRequiredToKillEnemy(this.attackObj,this.defenseObj,attackArmyCount);
+    let noOfHitsRequiredToDestroyDefense = this.battleService.calculateNoHitsRequiredToKillEnemy(this.defenseObj,this.attackObj,defenseArmyCount);
     this.battleResult(noOfHitsRequiredToKillAttacker,noOfHitsRequiredToDestroyDefense);
   }
 }

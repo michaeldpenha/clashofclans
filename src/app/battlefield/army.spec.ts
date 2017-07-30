@@ -6,7 +6,7 @@ import {Army} from './army'
 
 describe('to check the strength of an army', () => {
   it('should return the army' , () =>{
-    let armyStrenth = new Army([new Soldier('Barabrians',10,390),new Soldier('Archers',8,45)]);
-    expect(armyStrenth.health).toEqual(435);
+    let armyStrenth = new Army('Attack');
+    expect(armyStrenth.health).toEqual(45);
   });
 });

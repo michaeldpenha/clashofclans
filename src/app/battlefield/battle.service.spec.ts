@@ -14,8 +14,8 @@ describe('BattleService', () => {
     expect(service).toBeTruthy();
   }));
   it('should return the No of hits require to kill the enemy' , inject([BattleService], (service: BattleService) =>{
-    let armyObj = new Soldier('Defense',10,390);
-    let enemyObj = new Soldier('Attack',8,45);
+    let armyObj = new Soldier({type: 'Defense',damagePerHit : 10,health : 390});
+    let enemyObj = new Soldier({type : 'Attack',damagePerHit : 8,health : 45});
     let enemyCount = 1;
     let nitRequireToKillEnemy = service.calculateNoHitsRequiredToKillEnemy(enemyObj,armyObj,enemyCount);
     expect(nitRequireToKillEnemy).toEqual(5);
