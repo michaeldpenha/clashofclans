@@ -21,8 +21,8 @@ export class BattlefieldComponent {
     this.createFieldModel();
   }
   soliderObjCreation (){
-    this.attackObj = new Army('Attack');
-    this.defenseObj = new Army('Defense');
+    this.attackObj = new Army('Attack',this.armyComposition);
+    this.defenseObj = new Army('Defense',this.armyComposition);
   }
   createFieldModel (){
     for(let keys in this.armyComposition){
